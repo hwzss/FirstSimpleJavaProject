@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xiaohu.mapper.UserMapper">
+    <select id="queryUser" resultType="com.xiaohu.entity.User">
+        SELECT *
+        from user
+    </select>
+
+    <insert id="insertUser" parameterType="com.xiaohu.entity.User">
+        insert into user (name, invited_time) values (#{name}, 0);
+    </insert>
+
+    <update id="updateUserName" parameterType="com.xiaohu.entity.User">
+        UPDATE user
+        <set>
+            <if test="name!=null">name=#{name}</if>
+        </set>
+        where user_id=#{userId}
+    </update>
+</mapper>
